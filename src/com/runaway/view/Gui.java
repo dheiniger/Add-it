@@ -18,8 +18,6 @@ public class Gui {
 	public Gui(Parser p){
 		this.p = p;
 		createFrame();
-		//TODO REMOVE THIS
-		calculate();
 	}
 	
 	private void createFrame(){
@@ -52,8 +50,14 @@ public class Gui {
 	 *Get the value of the left pane and calculate the sum of each row
 	 */
 	private void calculate(){
-		String temp = "1 2 3 4 5 6 7 8 9 10 11 12    13 4 51 123 12 312 12";
-		System.out.println("in calclulate, sum is: " + p.calculateRow(temp));
+		ArrayList<String> leftTextAreaRows = getTextAreaRows(leftTextArea);
+		String rightTextAreaText = "";
+		int[] sums = new int[leftTextAreaRows.size()];
+		for(int i = 0; i < leftTextAreaRows.size(); i++){
+			rightTextAreaText += this.p.calculateRow(leftTextAreaRows.get(i)) + "\n";
+
+		}
+		rightTextArea.setText(rightTextAreaText);
 	}
 	
 	private void addActionListeners(JButton calculateButton){
@@ -61,10 +65,7 @@ public class Gui {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Button was clicked!");
-				System.out.println("Value of left pane: " + leftTextArea.getText());
-				System.out.println(getTextAreaRows(leftTextArea).toString());
-				
+				calculate();				
 			}
 		});
 	}
@@ -77,7 +78,7 @@ public class Gui {
 	private ArrayList<String> getTextAreaRows(TextArea t){
 		String[] textAreaRows;
 		String rawTextAreaValue = t.getText();
-		textAreaRows = rawTextAreaValue.split("\r\n");
+		textAreaRows = rawTextAreaValue.split("\r|\n");
 		ArrayList<String> rows = new ArrayList<String>();
 		
 		for(int i = 0; i < textAreaRows.length; i++){
