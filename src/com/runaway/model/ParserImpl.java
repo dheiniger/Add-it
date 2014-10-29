@@ -1,5 +1,10 @@
 package com.runaway.model;
 
+/**
+ * An implementation of {@link Parser}
+ * @author runaway
+ *
+ */
 public class ParserImpl implements Parser{
 	public ParserImpl(){
 	
