@@ -42,6 +42,7 @@ public class Gui {
 		JFrame f = new JFrame();
 		f.setSize(850, 1050);
 		f.setVisible(true);
+		f.setResizable(false);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		buildGui(f);
@@ -53,16 +54,16 @@ public class Gui {
 	 */
 	private void buildGui(JFrame frame){
 		frame.getContentPane().setLayout(null);
-		leftTextArea = new TextArea();
+		leftTextArea = new TextArea("", 0, 0, TextArea.SCROLLBARS_NONE);
 		leftTextArea.setBounds(10, 10, 317, 1001);
 		frame.getContentPane().add(leftTextArea);
 		
 		JButton calculateButton = new JButton("Calclulate Button");
-		calculateButton.setBounds(333, 615, 117, 25);
+		calculateButton.setBounds(340, 515, 165, 25);
 		frame.getContentPane().add(calculateButton);
 		
-		rightTextArea = new TextArea();
-		rightTextArea.setBounds(444, 10, 394, 1030);
+		rightTextArea = new TextArea("", 0, 0, TextArea.SCROLLBARS_NONE);
+		rightTextArea.setBounds(524, 10, 317, 1001);
 		frame.getContentPane().add(rightTextArea);
 		
 		addActionListeners(calculateButton);
