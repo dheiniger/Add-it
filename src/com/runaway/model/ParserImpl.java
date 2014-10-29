@@ -14,9 +14,14 @@ public class ParserImpl implements Parser{
 		int sum = 0;
 		//Take the string and split it on 1 or more spaces
 		String[] integers = string.split("\\s+");
-		for(int i = 0; i < integers.length; i++){
-			sum += Integer.parseInt(integers[i]);
+		try{
+			for(int i = 0; i < integers.length; i++){
+				sum += Integer.parseInt(integers[i]);
+			}
+		}catch(NumberFormatException e){
+			System.out.println("There string cannot be empty or start with whitspace");
 		}
+		
 		
 		return sum;
 	}
