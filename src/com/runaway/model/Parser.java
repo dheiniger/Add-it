@@ -1,5 +1,9 @@
 package com.runaway.model;
 
+/**
+ * @author runaway
+ *
+ */
 public interface Parser {
 	
 	/**

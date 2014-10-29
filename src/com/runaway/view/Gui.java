@@ -10,9 +10,24 @@ import javax.swing.JFrame;
 
 import com.runaway.model.Parser;
 
+/**
+ * The graphical interface
+ * @author runaway
+ *
+ */
 public class Gui {
+	/**
+	 * The parser used to do the calculations
+	 */
 	private Parser p;
+	
+	/**
+	 * The left text area on the GUI
+	 */
 	private TextArea leftTextArea;
+	/**
+	 * The right text area on the GUI
+	 */
 	private TextArea rightTextArea;
 	
 	public Gui(Parser p){
@@ -20,39 +35,48 @@ public class Gui {
 		createFrame();
 	}
 	
+	/**
+	 * Create and show the frame
+	 */
 	private void createFrame(){
 		JFrame f = new JFrame();
 		f.setSize(850, 1050);
 		f.setVisible(true);
+		f.setResizable(false);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		buildGui(f);
 	}
 	
+	/**
+	 * Add components to the frame
+	 * @param frame the frame to add components to.  
+	 */
 	private void buildGui(JFrame frame){
 		frame.getContentPane().setLayout(null);
-		leftTextArea = new TextArea();
+		leftTextArea = new TextArea("", 0, 0, TextArea.SCROLLBARS_NONE);
 		leftTextArea.setBounds(10, 10, 317, 1001);
 		frame.getContentPane().add(leftTextArea);
 		
 		JButton calculateButton = new JButton("Calclulate Button");
-		calculateButton.setBounds(333, 615, 117, 25);
+		calculateButton.setBounds(340, 515, 165, 25);
 		frame.getContentPane().add(calculateButton);
 		
-		rightTextArea = new TextArea();
-		rightTextArea.setBounds(444, 10, 394, 1030);
+		rightTextArea = new TextArea("", 0, 0, TextArea.SCROLLBARS_NONE);
+		rightTextArea.setBounds(524, 10, 317, 1001);
 		frame.getContentPane().add(rightTextArea);
 		
 		addActionListeners(calculateButton);
 	}
 	
 	/**
-	 *Get the value of the left pane and calculate the sum of each row
+	 *Get the value of the left pane and calculate the sum of each row.  
+	 *For each sum, display the result in the corresponding row in the
+	 *right textArea
 	 */
-	private void calculate(){
+	private void calculateAndDisplayResult(){
 		ArrayList<String> leftTextAreaRows = getTextAreaRows(leftTextArea);
 		String rightTextAreaText = "";
-		int[] sums = new int[leftTextAreaRows.size()];
 		for(int i = 0; i < leftTextAreaRows.size(); i++){
 			rightTextAreaText += this.p.calculateRow(leftTextAreaRows.get(i)) + "\n";
 
@@ -60,12 +84,17 @@ public class Gui {
 		rightTextArea.setText(rightTextAreaText);
 	}
 	
+	/**
+	 * Allow the button to calculate and display the sum in the
+	 * right window.
+	 * @param calculateButton
+	 */
 	private void addActionListeners(JButton calculateButton){
 		calculateButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				calculate();				
+				calculateAndDisplayResult();				
 			}
 		});
 	}
