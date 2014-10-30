@@ -12,6 +12,8 @@ public class ParserImpl implements Parser{
 		
 	public int calculateRow(String string){
 		int sum = 0;
+		//Make sure there is no leading whitespace
+		string = string.trim();
 		//Take the string and split it on 1 or more spaces
 		String[] integers = string.split("\\s+");
 		try{
