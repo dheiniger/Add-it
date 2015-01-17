@@ -58,7 +58,7 @@ public class Gui {
 		leftTextArea.setBounds(10, 10, 317, 1001);
 		frame.getContentPane().add(leftTextArea);
 		
-		JButton calculateButton = new JButton("Calclulate Button");
+		JButton calculateButton = new JButton("Calculate Button");
 		calculateButton.setBounds(340, 515, 165, 25);
 		frame.getContentPane().add(calculateButton);
 		
@@ -107,7 +107,7 @@ public class Gui {
 	private ArrayList<String> getTextAreaRows(TextArea t){
 		String[] textAreaRows;
 		String rawTextAreaValue = t.getText();
-		textAreaRows = rawTextAreaValue.split("\r|\n");
+		textAreaRows = rawTextAreaValue.split("\n");
 		ArrayList<String> rows = new ArrayList<String>();
 		
 		for(int i = 0; i < textAreaRows.length; i++){
